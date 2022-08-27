@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <main>
+        <div class="login__container">
+            <div class="card">
+                <h1>Login</h1>
+                
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <label for="username">
+                        <span class="icon"><i class="fa fa-user"></i></span>
+                        <input type="text" placeholder="Username" name="username" />
+                    </label>
+
+                    <label for="password">
+                        <span class="icon"><i class="fa fa-lock"></i></span>
+                        <input type="password" placeholder="Password" name="password" />
+                    </label>
+                    {% if error %}
+                    <p class="error">{{ error }}</p>
+                    {% endif%}
+                    <button type="submit">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

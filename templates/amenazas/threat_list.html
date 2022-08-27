@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head_content %}
+<title>{{title}}</title>
+{% endblock %}
+
+{% block container %}
+  <div>
+    <h1>{{title}}</h1>
+    <div class="center">
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Tipo de Amenaza</th>
+                <th>Disponibilidad</th>
+                <th>Integridad</th>
+                <th>Confidencialidad</th>
+            </tr>
+        {% for data in object_list %}   
+            <tr>
+                <td data-th="Nombre">{{data.name}}</td>
+                <td data-th="Tipo de Amenaza">{{data.threatType}}</td>
+                <td data-th="Disponibilidad" style="text-align:center">
+                    <span>
+                    {% if data.availability%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-close"></i>
+                    {% endif %}
+                    </span>
+                </td>
+                <td data-th="Integridad" style="text-align:center">
+                    <span>
+                    {% if data.integrity%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-close"></i>
+                    {% endif %}
+                    </span>
+                </td>
+                <td data-th="Confidencial" style="text-align:center">
+                    <span>
+                    {% if data.confidentiality%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-close"></i>
+                    {% endif %}
+                    </span>
+                </td>
+                </td>
+            </tr> 
+        {% endfor %}
+        </table>
+    </div>
+  <div>
+    
+  {% endblock %}
+
+  {% block modal %}
+
+  {% endblock%}
+
+

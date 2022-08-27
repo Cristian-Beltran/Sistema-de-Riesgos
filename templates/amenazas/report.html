@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% load util %}
+
+{% block head_content %}
+<title>{{title}}</title>
+{% endblock %}
+
+{% block container %}
+  <div>
+    <h1>{{title}}</h1>
+
+    <div class="create-content">
+        <button class="info-button" onclick="openModal('{% url 'risk:valuation' %}')">Valores de valoracion<span><i class="fa fa-info"></i></span></button>
+        <a href="{% url 'risk:reportPDF' %}"><button class="info-button" >Reporte<span><i class="fa fa-print"></i></span></button></a>
+    </div>
+
+    <div class="center">
+        <table>
+            <tr>
+                <th>Activo</th>
+                <th>Criticidad</th>
+                <th>Riesgo</th>
+            </tr>
+        {% for data in object_list %}   
+            <tr>
+                <td data-th="Activo">{{data.name}}</td>
+
+                <td style="color:#{{color|index:data.criticalys}}" data-th="Criticidad">
+                        <i  class="fa fa-star"></i>
+                        {{data.criticalys|floatformat:"0"}}
+                </td>
+                <td style="color:#{{color|index:data.risks}}" data-th="Riesgo">
+                        <i  class="fa fa-star"></i>
+                        {{data.risks|floatformat:"0"}}
+                </td>
+            </tr> 
+        {% endfor %}
+        </table>
+
+    </div>
+  <div>
+    
+  {% endblock %}
+
+  {% block modal %}
+
+  {% endblock%}

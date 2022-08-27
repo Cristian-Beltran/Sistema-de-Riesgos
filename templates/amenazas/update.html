@@ -1,0 +1,23 @@
+<div class="modal__container">
+    <div class="modal__header">
+        <h2 class="modal__title">{{ title }}</h2>
+    </div>
+    <form action="{% url url_form object.id %}" method="POST">
+        {%csrf_token%}
+
+        <div class="modal__body">
+            {% for field in form %}
+                <div class="field__container">
+                    {{field.errors}}
+                    {{field.label_tag}}
+                    {{field}}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="modal__footer">
+            <button class="primary-button" type="submit">Guardar</button>
+            <button class="close-button"id="modal__close">Cancelar</button>
+        </div>
+    </form>
+</div>

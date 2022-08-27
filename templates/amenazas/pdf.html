@@ -1,0 +1,98 @@
+{% load static %}
+{% load util %}
+
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .time {
+        text-align: right;
+    }
+
+    .table thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    .table thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .table tbody tr {
+        padding: 0;
+    }
+
+    .data {
+        width: 50px; 
+        height: 20px;
+    }
+    .text-center {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <main>
+        <div>
+            <h1 class="head">{{titleData}}</h1>
+            <h1 class="time">{{time}}</h1>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Activo</th>
+                            <th>Criticidad</th>
+                            <th>Riesgo</th>
+                        </tr>
+                    </thead>
+                    <tbody >
+                        {% for data in active%}
+                        <tr style="padding-top: 4px;">
+                            <td data-th="Activo">{{data.name}}</td>
+
+                            <td style="color:#{{color|index:data.criticalys}}" data-th="Criticidad">
+                                ⭐
+                                {{data.criticalys|floatformat:"0"}}
+                            </td>
+                            <td style="color:#{{color|index:data.risks}}" data-th="Riesgo">
+                                ⭐
+                                {{data.risks|floatformat:"0"}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <h1>{{titleValuation}}</h1>
+            <div class="data" >
+                <table class="table" style="width: 20px;">
+                    <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Valor</th>
+                        <th>Probalidad</th>
+                        <th>Ocurrencia</th>
+                    </tr>
+                    </thead>
+                    {% for data in valuation %}
+                    <tr style="background-color: #{{data.color}}">
+                        <td data-th="Codigo">{{data.code}}</td>
+                        <td data-th="Valor">{{data.valor}}</td>
+                        <td data-th="Probabilidad">{{data.probability}}</td>
+                        <td data-th="Ocurrencia">{{data.occurrence}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div>
+    </main>
+</body>
+
+</html>

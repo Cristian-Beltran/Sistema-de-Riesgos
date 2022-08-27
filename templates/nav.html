@@ -1,0 +1,73 @@
+{% load static %}
+<nav>
+    <div class="container">
+        <div class="container-logo">
+            <a class="logo" href="{% url 'risk:index' %}">
+                Manejo de Riesgos
+            </a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li class="">
+                    <a href="{% url 'risk:activeList' %}">
+                        Activos
+                    </a>
+                </li>
+                <li class="">
+                    <a href="{% url 'risk:threatList' %}">
+                        Amenazas
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'risk:incidentList' %}">
+                        Incidentes 
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="{% url 'risk:processList' %}">
+                        Procesos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'risk:procedureList' %}">
+                        Procedimientos 
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'risk:processProcedureList' %}">
+                        Relación P-P 
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'risk:criticalyList' %}">
+                        Criticidad 
+                    </a>
+                </li>
+ 
+                <li>
+                    <a href="{% url 'risk:riskList' %}">
+                        Riesgos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{% url 'risk:report' %}">
+                        Reporte 
+                    </a>
+                </li>
+                
+                <li class="">
+                    <a href="{% url 'logout' %}">
+                        logout 
+                    </a>
+                </li>
+
+            </ul>
+            <div class="hide">
+                <i class="fa fa-bars" aria-hidden="true"></i> Menu
+            </div>
+        </div>
+    </div>
+</nav>
