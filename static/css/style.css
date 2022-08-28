@@ -323,20 +323,14 @@ table tr {
     overflow-y: initial !important
 }
 .modal__container .modal__content{
-    height: 30rem;
-    padding: 0.5rem;
-    overflow-y: auto;
-}
-
-.modal__container .modal__content table{
     display: flex;
     flex-direction: column;
     justify-items: center;
     align-items: flex-start;
+    height: 30rem;
     padding: 0.5rem;
     overflow-y: auto;
 }
-
 
 .modal__container form {
     display: flex;
