@@ -149,12 +149,14 @@ nav .container .menu a:hover {
     border: 1px solid var(--color-primary);
 }
 
-span svg {
+span svg, 
+i {
     width: 2rem;
     transition: transform 0.2s;
 }
 
-span svg:hover {
+span svg:hover, 
+i:hover {
     width: 2rem;
     transform: scale(1.2);
 }

@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import View,ListView,UpdateView,CreateView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from django.db.models import Sum,Avg
 
 import os
 from django.conf import settings
@@ -382,4 +383,32 @@ class ReportPDF(LoginRequiredMixin,View):
         if pisaStatus.err:
             return HttpResponse('ERROR <pre>'+html+'</pre>')
         return response
+ 
+
+class DetailCriticalityListView(LoginRequiredMixin,ListView):
+    model = CriticalityAssessment
+    template_name = 'amenazas/detailCriticality.html'
+
+    def get_queryset(self): 
+        return self.model.objects.filter(active=self.request.resolver_match.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Promedio de Criticidad"
+        context['Promedio'] =  self.model.objects.filter(active=self.request.resolver_match.kwargs['pk']).aggregate(Avg('rangeFactor__minValor'))['rangeFactor__minValor__avg']
+        return context
+ 
+
+class DetailRiskListView(LoginRequiredMixin,ListView):
+    model = RiskAssessment
+    template_name = 'amenazas/detailRisk.html'
+
+    def get_queryset(self): 
+        return self.model.objects.filter(incident__active=self.request.resolver_match.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Promedio de Riesgo"
+        context['Promedio'] =self.model.objects.filter(incident__active=self.request.resolver_match.kwargs['pk']).aggregate(Avg('rangeFactor__minValor'))['rangeFactor__minValor__avg']
+        return context
  

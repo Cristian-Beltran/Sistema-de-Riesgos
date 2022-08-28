@@ -41,5 +41,7 @@ urlpatterns = [
 
     path("report",views.ReportListView.as_view(),name="report"),
     path("valuation",views.ValuationListView.as_view(),name="valuation"),
-    path("reportPDF",views.ReportPDF.as_view(),name="reportPDF")
+    path("reportPDF",views.ReportPDF.as_view(),name="reportPDF"),
+    path("detalleCriticidad/<int:pk>",views.DetailCriticalityListView.as_view(),name="detailCriticality"),
+    path("detalleRisk/<int:pk>",views.DetailRiskListView.as_view(),name="detailRisk")
 ]

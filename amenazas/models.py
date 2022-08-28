@@ -48,12 +48,12 @@ class Active(models.Model):
         return self.name
     
     def criticalys(self):
-        criticaly = CriticalityAssessment.objects.filter(active=self.id).aggregate(Avg('rangeFactor__maxValor'))
-        avg = criticaly['rangeFactor__maxValor__avg']
+        criticaly = CriticalityAssessment.objects.filter(active=self.id).aggregate(Avg('rangeFactor__minValor'))
+        avg = criticaly['rangeFactor__minValor__avg']
         return avg
     def risks(self):
-        criticaly = RiskAssessment.objects.filter(incident__active=self.id).aggregate(Avg('rangeFactor__maxValor'))
-        avg = criticaly['rangeFactor__maxValor__avg']
+        criticaly = RiskAssessment.objects.filter(incident__active=self.id).aggregate(Avg('rangeFactor__minValor'))
+        avg = criticaly['rangeFactor__minValor__avg']
         return avg
 
 class Incident(models.Model):

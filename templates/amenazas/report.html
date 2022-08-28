@@ -21,6 +21,8 @@
                 <th>Activo</th>
                 <th>Criticidad</th>
                 <th>Riesgo</th>
+                <th>Info Criticidad</th>
+                <th>Info Riesgos</th>
             </tr>
         {% for data in object_list %}   
             <tr>
@@ -28,12 +30,15 @@
 
                 <td style="color:#{{color|index:data.criticalys}}" data-th="Criticidad">
                         <i  class="fa fa-star"></i>
-                        {{data.criticalys|floatformat:"0"}}
+                        {{data.criticalys|floatformat:2}}
                 </td>
                 <td style="color:#{{color|index:data.risks}}" data-th="Riesgo">
                         <i  class="fa fa-star"></i>
-                        {{data.risks|floatformat:"0"}}
+                        {{data.risks|floatformat:2}}
                 </td>
+                <td data-th="Info Criticidad"><button onclick="openModal('{% url 'risk:detailCriticality' data.id %}')" class="center"><span><i class="icon fa fa-info"></i></button></td>
+
+                <td data-th="Info Riesgo"><button onclick="openModal('{% url 'risk:detailRisk' data.id %}')" class="center"><span><i class="icon fa fa-info"></i></button></td>
             </tr> 
         {% endfor %}
         </table>
