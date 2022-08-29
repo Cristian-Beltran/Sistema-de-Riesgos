@@ -352,4 +352,4 @@ MigrationBackup/
 # Heroku
 Procfile
 # Base de datos
-db.sqlite3
+*.sqlite3
